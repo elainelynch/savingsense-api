@@ -22,13 +22,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::factory()->create([
+        User::factory()
+        ->hasTransactions(2)
+        ->create([
             'name' => 'Test User',
             'email' => 'test@example.com'
         ]);
 
         Transaction::factory()
-        ->hasUsers(1)
         ->create([
             'type' => 'expense',
             'category' => 'electric bill',
