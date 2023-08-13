@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->enum('type',['income', 'expense']);
-            $table->enum('category',['food & drink', 'electric bill', 'water bill', 'rent', 'transportation', 'beauty', 'education', 'clothing', 'health']);
+            $table->enum('category',['food & drink', 'electric bill', 'water bill', 'rent', 'transportation', 'beauty', 'education', 'clothing', 'health', 'income']);
             $table->integer('amount');
             $table->timestamp('date')->nullable();
             $table->unsignedBigInteger('user_id');
