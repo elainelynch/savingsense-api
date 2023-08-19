@@ -22,7 +22,7 @@ class TransactionFactory extends Factory
             'category' => fake()->randomElement(['salary', 'business', 'allowance', 'pension', 'savings', 'food and drink', 'electric bill', 'water bill', 'rent', 'transportation', 'study', 'beauty', 'health', 'entertainment', 'debt payments', 'personal care', 'gifts and donations', 'insurance', 'miscellaneous', 'utilities', 'pets', 'subscriptions', 'home improvement', 'vacation and travel', 'clothing', 'electronic and gadgets']),
             'amount' => fake()->randomNumber(6, false),
             'date' => fake()->date('Y_m_d'),
-            'note' => fake()->realText(),
+            'note' => fake()->realText($maxNbChars = 40, $indexSize = 1),
             'user_id' => User::factory()
         ];
     }

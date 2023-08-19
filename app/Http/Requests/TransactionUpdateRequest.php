@@ -27,7 +27,7 @@ class TransactionUpdateRequest extends FormRequest
             'type' => 'sometimes|required',
             'category' => 'sometimes|required',
             'amount' => 'sometimes|required',
-            'date' => 'sometimes|date_format:m/d/Y',
+            'date' => 'sometimes|date_format:Y-m-d',
             'note' => 'sometimes|required',
             'userId' => 'sometimes|required|exists:users,id',
             

@@ -27,7 +27,7 @@ class TransactionStoreRequest extends FormRequest
             'type' => 'required',
             'category' => 'required',
             'amount' => 'required',
-            'date' => 'date_format:m/d/Y',
+            'date' => 'date_format:Y-m-d',
             'note' => 'required',
             'userId' => 'required|exists:users,id',
             
