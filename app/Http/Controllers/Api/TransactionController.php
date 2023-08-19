@@ -47,6 +47,7 @@ class TransactionController extends Controller
                 'category' => $request->category,
                 'amount' => $request->amount,
                 'date' => Carbon::parse(strtotime($request->date)),
+                'note' => $request->note,
                 'user_id' => $request->userId
             ])
         );
@@ -78,12 +79,12 @@ class TransactionController extends Controller
             $transaction->amount = $request->amount; 
         }
 
-        if (isset($request->amount)) {
-            $transaction->amount = $request->amount; 
-        }
-
         if (isset($request->date)) {
             $transaction->date = $request->date; 
+        }
+
+        if (isset($request->note)) {
+            $transaction->note = $request->note; 
         }
 
         $transaction->save();

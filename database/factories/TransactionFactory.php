@@ -19,9 +19,10 @@ class TransactionFactory extends Factory
     {
         return [
             'type' => fake()->randomElement(['income', 'expense']),
-            'category' => fake()->randomElement(['food & drink', 'electric bill', 'water bill', 'rent', 'transportation', 'beauty', 'education', 'clothing', 'health']),
+            'category' => fake()->randomElement(['salary', 'business', 'allowance', 'pension', 'savings', 'food and drink', 'electric bill', 'water bill', 'rent', 'transportation', 'study', 'beauty', 'health', 'entertainment', 'debt payments', 'personal care', 'gifts and donations', 'insurance', 'miscellaneous', 'utilities', 'pets', 'subscriptions', 'home improvement', 'vacation and travel', 'clothing', 'electronic and gadgets']),
             'amount' => fake()->randomNumber(6, false),
             'date' => fake()->date('Y_m_d'),
+            'note' => fake()->realText(),
             'user_id' => User::factory()
         ];
     }

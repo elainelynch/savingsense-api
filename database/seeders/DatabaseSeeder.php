@@ -36,7 +36,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'expense',
             'category' => 'electric bill',
             'amount' => '1500',
-            'date' => '2023-08-09'
+            'date' => '2023-08-09',
+            'note' => 'july electric bill',
         ]);
 
 
