@@ -9,6 +9,7 @@ use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -41,14 +42,19 @@ class TransactionController extends Controller
      */
     public function store(TransactionStoreRequest $request)
     {
-        return TransactionResource::make(
+        $user = Auth::user();
+
+        return 
+        
+        TransactionResource::make(
             Transaction::create([
                 'type' => $request->type,
                 'category' => $request->category,
                 'amount' => $request->amount,
-                'date' => Carbon::parse(strtotime($request->date)),
+                // 'date' => Carbon::createFromTimestamp($request->date),
+                'date' => $request->date,
                 'note' => $request->note,
-                'user_id' => $request->userId
+                'user_id' => $user->id,
             ])
         );
     }
@@ -56,8 +62,9 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction)
+    public function show($id)
     {
+        $transaction = Transaction::find($id);
         return TransactionResource::make($transaction);
     }
 
@@ -65,8 +72,11 @@ class TransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TransactionUpdateRequest $request, Transaction $transaction)
+    // public function update(TransactionUpdateRequest $request, Transaction $transaction)
+    public function update(TransactionUpdateRequest $request, $id)
     {
+        $transaction = Transaction::find($id);
+
         if (isset($request->type)) {
             $transaction->type = $request->type;
         }
@@ -95,9 +105,11 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction $transaction)
+    // public function destroy(Transaction $transaction)
+    public function destroy($id)
     {
         // return $transaction;
+         $transaction = Transaction::find($id);
          $transaction->delete();
          return response()->json([
              'success' => true,

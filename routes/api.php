@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -28,6 +29,32 @@ Route::group(['prefix' => 'v1'], function () {
     //     Route::get('/', [UserController::class, 'index']);
     //     Route::get('/id', [UserController::class, 'show']);
     // });
-    Route::apiResource('users', UserController::class);
-    Route::apiResource('transactions', TransactionController::class);
+
+    Route::post('/login', [AuthController::class, 'login']);
+
+    // Route::apiResource('users', UserController::class);
+    // users
+    Route::group(['prefix' => 'users'], function() {
+            Route::get('/', [UserController::class, 'index']);
+            Route::get('/{id}', [UserController::class, 'show']);
+            Route::post('/', [UserController::class, 'store']);
+            Route::patch('/{id}', [UserController::class, 'update']);
+            Route::delete('/{id}', [UserController::class, 'destroy']);
+        });
+
+    // Route::apiResource('transactions', TransactionController::class);
+    // transactions
+
+    Route::group(['prefix' => 'transactions'], function() {
+        Route::get('/', [TransactionController::class, 'index']);
+        Route::get('/{id}', [TransactionControllerController::class, 'show']);
+        Route::post('/', [TransactionController::class, 'store'])->middleware(['auth:sanctum', 'ability:createTransaction']);
+        Route::patch('/{id}', [TransactionController::class, 'update'])->middleware(['auth:sanctum', 'ability:editTransaction']);
+        Route::delete('/{id}', [TransactionController::class, 'destroy'])->middleware(['auth:sanctum', 'ability:deleteTransaction']);
+
+        // Route::post('/', [TransactionController::class, 'store'])->middleware(['auth:sanctum', 'ability:createTransaction']);
+        // Route::patch('/{id}', [TransactionController::class, 'update'])->middleware(['auth:sanctum', 'ability:editTransaction']);
+        // Route::delete('/{id}', [TransactionController::class, 'destroy'])->middleware(['auth:sanctum', 'ability:deleteTransaction']);
+    });
+
 });
