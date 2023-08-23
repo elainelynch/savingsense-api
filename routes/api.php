@@ -49,8 +49,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/', [TransactionController::class, 'index']);
         Route::get('/{id}', [TransactionControllerController::class, 'show']);
         Route::post('/', [TransactionController::class, 'store'])->middleware(['auth:sanctum', 'ability:createTransaction']);
-        Route::patch('/{id}', [TransactionController::class, 'update'])->middleware(['auth:sanctum', 'ability:editTransaction']);
-        Route::delete('/{id}', [TransactionController::class, 'destroy'])->middleware(['auth:sanctum', 'ability:deleteTransaction']);
+        Route::patch('/{id}', [TransactionController::class, 'update']);
+        Route::delete('/{id}', [TransactionController::class, 'destroy']);
 
         // Route::post('/', [TransactionController::class, 'store'])->middleware(['auth:sanctum', 'ability:createTransaction']);
         // Route::patch('/{id}', [TransactionController::class, 'update'])->middleware(['auth:sanctum', 'ability:editTransaction']);
